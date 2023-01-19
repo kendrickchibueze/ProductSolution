@@ -1,60 +1,122 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
+﻿using ProductLibrary;
+using System;
+using System.Collections.Generic;
+using System.Dynamic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-//namespace ProductCollection
-//{
-//    class Product
-//    {
-//        public int Id { get; set; }
-//        public string Name { get; set; }
-//        public int Quantity { get; set; }
-//        public decimal Price { get; set; }
-//        public string Category { get; set; }
-//        public int OrderCount { get; set; }
-//    }
+namespace ProductCollection
+{
+    class ElasticProductCollection
+    {
+        private List<Product> products;
 
-//    class ExpandedProduct : Product
-//    {
-//        public void DisplayProperties(string[] properties = null)
-//        {
-//            if (properties == null)
-//            {
-//                properties = typeof(Product).GetProperties().Select(p => p.Name).ToArray();
-//            }
+        public ElasticProductCollection(List<Product> products)
+        {
+            this.products = products;
+        }
 
-//            foreach (var property in properties)
-//            {
-//                var propertyValue = typeof(Product).GetProperty(property).GetValue(this);
-//                Console.Write(propertyValue + " ");
-//            }
-//            Console.WriteLine();
-//        }
-//    }
+        public List<ExpandoObject> Get(params string[] properties)
+        {
+            var result = new List<ExpandoObject>();
 
-//    //class Program
-//    //{
-//    //    static void Main(string[] args)
-//    //    {
-//    //        var products = new List<ExpandedProduct>
-//    //    {
-//    //        new ExpandedProduct { Id = 1, Name = "Dell Xps", Quantity = 30, Price = 1500, Category = "PCs", OrderCount = 1000 },
-//    //        new ExpandedProduct { Id = 2, Name = "Ergonomic Chair", Quantity = 400, Price = 200, Category = "Chairs", OrderCount = 4000 },
-//    //        new ExpandedProduct { Id = 3, Name = "Table", Quantity = 500, Price = 250, Category = "Tables", OrderCount = 3000 },
-//    //    };
+            foreach (var product in products)
+            {
+                dynamic productExpando = new ExpandoObject();
 
-//    //        // Display all properties
-//    //        products[0].DisplayProperties();
-//    //        products[1].DisplayProperties();
-//    //        products[2].DisplayProperties();
+                var productExpandoDict = productExpando as IDictionary<string, object>;
 
-//    //        // Display specific properties
-//    //        products[0].DisplayProperties(new string[] { "Name", "Quantity", "OrderCount" });
-//    //        products[1].DisplayProperties(new string[] { "Name", "Quantity", "OrderCount" });
-//    //        products[2].DisplayProperties(new string[] { "Name", "Quantity", "OrderCount" });
-//    //    }
-//    //}
+                if (properties.Length == 0)
+                {
+                    productExpandoDict["Id"] = product.Id;
 
-//}
+                    productExpandoDict["Name"] = product.Name;
+
+                    productExpandoDict["Quantity"] = product.Quantity;
+
+                    productExpandoDict["Price"] = product.Price;
+
+                    productExpandoDict["Category"] = product.Category;
+
+                    productExpandoDict["OrderCount"] = product.OrderCount;
+                }
+                else
+                {
+                    foreach (var property in properties)
+                    {
+                        switch (property)
+                        {
+                            case "Id":
+
+                                productExpandoDict["Id"] = product.Id;
+
+                                break;
+
+                            case "Name":
+
+                                productExpandoDict["Name"] = product.Name;
+
+                                break;
+
+                            case "Quantity":
+
+                                productExpandoDict["Quantity"] = product.Quantity;
+
+                                break;
+
+                            case "Price":
+
+                                productExpandoDict["Price"] = product.Price;
+
+                                break;
+
+                            case "Category":
+
+                                productExpandoDict["Category"] = product.Category;
+
+                                break;
+
+                            case "OrderCount":
+
+                                productExpandoDict["OrderCount"] = product.OrderCount;
+
+                                break;
+                        }
+                    }
+                }
+                result.Add(productExpando);
+            }
+            return result;
+        }
+
+        public void Print(List<ExpandoObject> expandoObjects, params string[] properties)
+        {
+            if (properties.Length == 0)
+            {
+                properties = new string[] { "Id", "Name", "Quantity", "Price", "Category", "OrderCount" };
+            }
+            var header = string.Join(", ", properties);
+
+            Console.WriteLine(header);
+
+            foreach (var expando in expandoObjects)
+            {
+                var dictionary = expando as IDictionary<string, object>;
+
+                foreach (var item in dictionary)
+                {
+                    Console.Write(item.Key + ": " + item.Value + ", ");
+                }
+                Console.WriteLine();
+            }
+
+        }
+
+
+
+    }
+
+
+   
+}

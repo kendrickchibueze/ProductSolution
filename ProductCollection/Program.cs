@@ -4,9 +4,10 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            Console.WriteLine("************My Elastic Collection using Expando Object***********\n\n");
 
-            Programmer.Run();
+
+            ProductDisplay.Run();
 
         }
     }
