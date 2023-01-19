@@ -103,7 +103,6 @@ namespace ProductCollection
             foreach (var expando in expandoObjects)
             {
                 var dictionary = expando as IDictionary<string, object>;
-
                 foreach (var item in dictionary)
                 {
                     Console.Write(item.Key + ": " + item.Value + ", ");

@@ -26,16 +26,67 @@ namespace ProductCollection
 
             var allProperties = elasticCollection.Get();
 
-            Console.WriteLine("All Properties:");
+            Utility.PrintColorMessage(ConsoleColor.Cyan, "All Properties:");
 
             elasticCollection.Print(allProperties);
 
-            Console.WriteLine();
+            Console.WriteLine(); 
 
 
-            var specifiedProperties = elasticCollection.Get("Name", "Quantity", "OrderCount");
+            while (true)
+            {
+                Utility.PrintColorMessage(ConsoleColor.Cyan, "Enter properties to filter by (comma separated) or 'q' to exit:");
 
-            elasticCollection.Print(specifiedProperties, "Name", "Quantity", "OrderCount");
+
+                string? properties = Console.ReadLine();
+
+                if (properties == "q")
+                {
+                    break;
+                    
+                }
+
+                if (string.IsNullOrWhiteSpace(properties))
+                {
+                    Utility.PrintColorMessage(ConsoleColor.Red, "Invalid input, please enter a valid properties.");
+
+                    continue;
+                }
+                string[] propertiesArray = properties.Split(',');
+
+                List<string> validProperties = new List<string> { "Id", "Name", "Quantity", "Price", "Category", "OrderCount" };
+
+                bool isValid = true;
+
+                foreach (string property in propertiesArray)
+                {
+                    if (!validProperties.Contains(property.Trim()))
+                    {
+                        Utility.PrintColorMessage(ConsoleColor.Red, "Invalid property: " + property);
+
+                        isValid = false;
+
+                        break;
+                    }
+                }
+
+                if (isValid)
+                {
+                    var filteredProperties = elasticCollection.Get(propertiesArray);
+
+                    elasticCollection.Print(filteredProperties, propertiesArray);
+
+                    
+                }
+                else
+                {
+                    Utility.PrintColorMessage(ConsoleColor.Red, "Could not filter properties, please check the properties you have entered.");
+                }
+            }
+
+
+
+
         }
 
     }
