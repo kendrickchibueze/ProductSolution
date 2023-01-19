@@ -17,6 +17,8 @@ namespace ProductCollection
             this.products = products;
         }
 
+
+        //ExpandoObject represents an object whose member can be added and removed at runtime
         public List<ExpandoObject> Get(params string[] properties)
         {
             var result = new List<ExpandoObject>();
