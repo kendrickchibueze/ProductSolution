@@ -35,7 +35,7 @@ namespace ProductCollection
 
             while (true)
             {
-                Utility.PrintColorMessage(ConsoleColor.Cyan, "Enter properties to filter by (comma separated) or 'q' to exit:");
+                Utility.PrintColorMessage(ConsoleColor.Cyan, "Enter properties to filter by (comma separated) or 'q' to exit:\n");
 
 
                 string? properties = Console.ReadLine();
@@ -48,7 +48,7 @@ namespace ProductCollection
 
                 if (string.IsNullOrWhiteSpace(properties))
                 {
-                    Utility.PrintColorMessage(ConsoleColor.Red, "Invalid input, please enter a valid properties.");
+                    Utility.PrintColorMessage(ConsoleColor.Red, "Invalid input, please enter a valid properties.\n");
 
                     continue;
                 }
@@ -80,7 +80,7 @@ namespace ProductCollection
                 }
                 else
                 {
-                    Utility.PrintColorMessage(ConsoleColor.Red, "Could not filter properties, please check the properties you have entered.");
+                    Utility.PrintColorMessage(ConsoleColor.Red, "Could not filter properties, please check the properties you have entered.\n");
                 }
             }
 

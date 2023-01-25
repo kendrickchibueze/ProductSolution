@@ -17,7 +17,7 @@ namespace ProductCollection
             Console.ForegroundColor = color;
 
             //tell user its not a number
-            Console.WriteLine(message);
+            Console.Write(message);
 
             //reset text color
             Console.ResetColor();

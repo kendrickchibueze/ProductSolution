@@ -3,8 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace ProductCollection
 {
@@ -18,6 +20,7 @@ namespace ProductCollection
         {
             this.products = products;
         }
+
 
 
         // method that returns a list of ExpandoObjects, which are objects that can have properties added or removed at runtime
@@ -116,7 +119,7 @@ namespace ProductCollection
             // create a header string by joining the properties array
             var header = string.Join(", ", properties);
 
-            Console.WriteLine(header);
+            Utility.PrintColorMessage(ConsoleColor.Yellow, header + "\n\n");
 
             // loop through each ExpandoObject in the expandoObjects list
 
@@ -133,7 +136,7 @@ namespace ProductCollection
 
                 foreach (var item in dictionary)
                 {
-                    Console.Write(item.Key + ": " + item.Value + ", ");
+                    Utility.PrintColorMessage(ConsoleColor.Green, item.Key + ": " + item.Value + "," );
                 }
 
 
