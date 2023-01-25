@@ -1,4 +1,4 @@
-#  Elastic Collection of Products
+#  Elastic Collection of Products🤷‍♀️😃😎🤞👌
 
 In this project, I implemented an Elastic collection of a given object called Products.
 Here a Product has: **An Id, Name, Quantity, Price, Category, OrderCount.**
@@ -6,7 +6,7 @@ Here a Product has: **An Id, Name, Quantity, Price, Category, OrderCount.**
 My end-users or  clients want the flexibility of specifying what properties to display when listing the products,
  e.g when properties are not specified, all properties of the products are listed like:
 
-**Id, Name, Quantity, Price, Category, OrderCount**
+**Id, Name, Quantity, Price, Category, OrderCount**😎
 
 1, Dell Xps, 30, $1500, PCs, 1000
 2, Ergonomic Chair, 400, $200, Chairs, 4000
@@ -14,13 +14,13 @@ My end-users or  clients want the flexibility of specifying what properties to d
 
 Lets Assume that the client specifies properties like **Name, quantity,OrderCount:**
 
-**Name, Quantity, OrderCount**
+**Name, Quantity, OrderCount**😃🤷‍♂️
 Dell Xps, 30, 1000
 Ergonomic Chair, 400, 4000
 Table, 500, 3000
 
 
-Note: In this project, i am using an  **ExpandoObject** to achieve the filtering at runtime.
+Note: In this project, i am using an  **ExpandoObject** to achieve the filtering at runtime.✌👓
 
 
 A run of our app shows the following output:
