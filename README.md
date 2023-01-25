@@ -15,6 +15,7 @@ My end-users or  clients want the flexibility of specifying what properties to d
 Lets Assume that the client specifies properties like **Name, quantity,OrderCount:**
 
 **Name, Quantity, OrderCount**😃🤷‍♂️
+
 Dell Xps, 30, 1000
 Ergonomic Chair, 400, 4000
 Table, 500, 3000
