@@ -22,6 +22,24 @@ namespace ProductCollection
         }
 
 
+        //        This code defines a public method in C# called "Get" that takes in a variable 
+        //         number of string arguments and returns a List of ExpandoObjects.
+
+        //        The List<ExpandoObject> return type means that the method will return a list of objects of type ExpandoObject.
+
+        //         The params keyword before the string[] properties parameter indicates that the method can take in a 
+        //         variable number of string arguments.This allows the caller of the method to pass in 
+        //         any number of string arguments, which will be collected into a string array called "properties".
+
+        //         This method might be used to retrieve a list of dynamic objects that have certain properties. 
+        //         The properties parameter passed in is used to filter the objects returned by the method.
+
+
+
+
+
+
+
 
         // method that returns a list of ExpandoObjects, which are objects that can have properties added or removed at runtime
         public List<ExpandoObject> Get(params string[] properties)
